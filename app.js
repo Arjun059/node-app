@@ -22,7 +22,7 @@ app.set("views", path.resolve(__dirname + "/views"));
 app.get('/', (req, res) => {
     res.render("index")
 });
-app.get("/com", (req, res) => {
+app.get("/create", (req, res) => {
     res.render("composeblog.ejs")
 })
 app.get("/edit", (req, res) => {
