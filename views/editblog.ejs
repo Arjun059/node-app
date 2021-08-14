@@ -6,7 +6,8 @@
       <div class="box1">  <textarea name="title">Write here title</textarea>  </div>
        <div class="box2"> <textarea name="content" id="" rows="10"> Write here content</textarea></div>
         <div class="btns">
-            <a href="/like" class="like">Submit</a>  
+            <a href="/edit" class="like">Submit</a>  
+            <a href="/" class="back">Back</a>
         </div>
                  
 
@@ -47,12 +48,15 @@
         min-width: 4rem;
     }
     
-    .like{
+    .like, .back {
         background: rgb(65,105,225);
         margin-top: 1rem;
         min-width: 6rem;
         letter-spacing:  1px;
         margin-bottom: 1rem;
+    }
+    .back{
+        background-color: gray !important;
     }
 
     .btns {
