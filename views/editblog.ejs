@@ -1,0 +1,70 @@
+<%- include( "./partials/header") %>
+
+<div class="container">
+    <div class="main">
+       <h1>Edit Blog</h1>
+      <div class="box1">  <textarea name="title">Write here title</textarea>  </div>
+       <div class="box2"> <textarea name="content" id="" rows="10"> Write here content</textarea></div>
+        <div class="btns">
+            <a href="/like" class="like">Submit</a>  
+        </div>
+                 
+
+    </div>
+</div>
+
+<style> 
+    body{
+        background-color: #F8fbf8;
+        display: flex;
+        flex-direction: column;
+    }
+    textarea{
+        width: 100%;
+    }
+
+    .container{
+        border-bottom: 2px solid gray;
+        box-shadow: 5px 5px 5px lightslategray ;
+    }
+    
+    .main{
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: .5rem ;
+    }
+    
+    a {
+        text-decoration: none;
+        display: block !important;
+        max-width: 4rem;
+        height: 2.1rem;
+        margin-right: .2rem;
+        text-align: center;
+        line-height: 2rem;
+        border-radius: 4px;
+        color: white;
+        min-width: 4rem;
+    }
+    
+    .like{
+        background: rgb(65,105,225);
+        margin-top: 1rem;
+        min-width: 6rem;
+        letter-spacing:  1px;
+        margin-bottom: 1rem;
+    }
+
+    .btns {
+        display: flex;
+    }
+    .box1 {
+        margin-bottom: .8rem;
+    }
+    textarea{
+        border: none;
+        border-left: 2px solid lightskyblue;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+   </style>
+<%- include( "./partials/footer") %> 

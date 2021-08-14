@@ -22,7 +22,12 @@ app.set("views", path.resolve(__dirname + "/views"));
 app.get('/', (req, res) => {
     res.render("index")
 });
-
+app.get("/com", (req, res) => {
+    res.render("composeblog.ejs")
+})
+app.get("/edit", (req, res) => {
+    res.render('editblog')
+})
 // ---server running-----------
 let PORT = process.env.PORT || 8200 ;
 app.listen(PORT, ()=>console.log(`http://localhost:${PORT}/`));
