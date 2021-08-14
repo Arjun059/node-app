@@ -1,0 +1,73 @@
+<%- include( "./partials/header") %>
+
+<div class="container">
+    <div class="main">
+
+      <div class="box1">  <h1 class="title">Title</h1> <p class="date"> Created at </p> </div>
+        <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, aperiam.</p>
+        <div class="btns">
+            <a href="/like" class="like">Like</a>  
+            <a href="/edit" class="edit">Edit</a>
+            <a href="/delete" class="delete">Delete</a>
+        </div>
+                 
+
+    </div>
+</div>
+
+<style> 
+    body{
+        background-color: #F8fbf8;
+    }
+    .container{
+        border-bottom: 2px solid gray;
+        box-shadow: 5px 5px 5px lightslategray ;
+    }
+    .box1 {
+        display: flex;
+    }
+    .date{
+        margin-left: auto;
+        margin-right: 2rem;
+    }
+    .main{
+        padding-left: 2rem;
+        padding-right: 1rem;
+        padding-bottom: .5rem ;
+    }
+    .content{
+        font-size: larger;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .title{
+        font-family: inherit;
+        font-weight: 40;
+    }
+    a {
+        text-decoration: none;
+        display: block !important;
+        max-width: 4rem;
+        height: 2.1rem;
+        margin-right: .2rem;
+        text-align: center;
+        line-height: 2rem;
+        border-radius: 4px;
+        color: white;
+        min-width: 4rem;
+    }
+    .delete{
+        background: tomato;
+    
+    }
+    .like{
+        background: rgb(65,105,225);
+    }
+    .edit{
+        color: gray;
+        background: yellow;
+    }
+    .btns {
+        display: flex;
+    }
+   </style>
+<%- include( "./partials/footer") %> 
