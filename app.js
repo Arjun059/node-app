@@ -1,7 +1,15 @@
 const express = require("express");
 const path = require('path');
+const mongoose = require('mongoose');
+const isAuth = require("./middeware/authcheck");
 
 require("dotenv").config();
+
+
+// ------mongooe connection -----
+mongoose.connect(process.env.mongouri, 
+    {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex: true},
+    () => console.log("db connnected"))
 
 //------express init---------
 const app = express();
@@ -17,11 +25,18 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname + "/views"));
 
-//-------Routes----------------
+// --------session uses --------
+app.use(require("./Routes/sessionroutes"));
+//---------login-register-------
+app.use(require("./Routes/loginroutes"));
 
-app.get('/', (req, res) => {
+//-------Routes----------------
+app.get('/', (req, res) => { 
     res.render("index")
 });
+app.get("/private", isAuth, (req, res) => {
+    res.send("auth cheched")
+})
 app.get("/create", (req, res) => {
     res.render("composeblog.ejs")
 })
