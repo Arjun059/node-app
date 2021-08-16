@@ -33,7 +33,7 @@ app.use(require("./Routes/loginroutes"));
 
 //-------Routes----------------
 app.get('/', (req, res) => { 
-    res.render("index")
+    res.render("index");
 });
 app.get("/private", isAuth, (req, res) => {
     res.send("auth cheched")
@@ -45,5 +45,6 @@ app.get("/edit", (req, res) => {
     res.render('editblog')
 })
 // ---server running-----------
-let PORT = process.env.PORT || 8200 ;
+
+let PORT = process.env.PORT || 8200;
 app.listen(PORT, ()=>console.log(`http://localhost:${PORT}/`));
