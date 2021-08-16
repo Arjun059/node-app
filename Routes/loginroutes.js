@@ -12,8 +12,8 @@ router.get("/login", (req, res) => {
 router.post("/login", async (req, res) => {
     const {email, password} = req.body;
     if(email == "" || password == "") {
-        req.session.error = "Fill All Data"
-        return res.redirect(403, "/login")
+        req.session.error = "Fill All Data";
+        return res.redirect(403, "/login");
     }
     const user = await User.findOne({email: email});
     if (user == null || user == "") {
@@ -37,11 +37,11 @@ router.post("/login", async (req, res) => {
 router.get("/register", (req, res) => {
     const error = req.session.error ;
     delete req.session.error ;
-    return res.render('register');
+    return res.render('register',{err: error});
 });
 router.post("/register", async (req, res) => {
     const {username, email, password, cnfpassword} = req.body;
-    if((password == cnfpassword) == false){
+    if(password != cnfpassword){
         req.session.error = "Confirm Password Not Match";
         return res.redirect(403, "/register");
     }
