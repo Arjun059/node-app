@@ -7,15 +7,10 @@ require("dotenv").config();
 
 
 // ------mongooe connection -----
-mongouri = String(process.env.mongouri);
-mongoose.connect( mongouri, 
-    {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex: true},
-    (errr) => {console.log("db connnected");
-               if(errr) { 
-                 process.exit(1)
-                 }
-            })
 
+mongoose.connect(process.env.mongouri,
+    {useNewUrlParser: true, useUnifiedTopology:true, useCreateIndex: true},
+    ()=> console.log("db connected"));
 //------express init---------
 const app = express();
 
@@ -31,9 +26,9 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname + "/views"));
 
 // --------session uses --------
-// app.use(require("./Routes/sessionroutes"));
-//---------login-register-------
-// app.use(require("./Routes/loginroutes"));
+app.use("*", require("./Routes/sessionroutes"));
+// ---------login-register-------
+app.use("*", require("./Routes/loginroutes"));
 
 //-------Routes----------------
 app.get('/', (req, res) => { 
