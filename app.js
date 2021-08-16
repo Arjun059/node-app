@@ -33,6 +33,7 @@ app.use(require("./Routes/loginroutes"));
 
 //-------Routes----------------
 app.get('/', (req, res) => { 
+    res.status(200);
     res.render("index");
 });
 app.get("/private", isAuth, (req, res) => {
