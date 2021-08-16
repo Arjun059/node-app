@@ -7,7 +7,8 @@ require("dotenv").config();
 
 
 // ------mongooe connection -----
-mongoose.connect(process.env.mongouri, 
+mongouri = String(process.env.mongouri);
+mongoose.connect( mongouri, 
     {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex: true},
     () => console.log("db connnected"))
 
