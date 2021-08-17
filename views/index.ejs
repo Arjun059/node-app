@@ -1,19 +1,26 @@
 <%- include( "./partials/header") %>
 <%- include("./partials/navbar") %> 
-
-<div class="container">
-    <div class="main">
-
-      <div class="box1">  <h1 class="title">Title</h1> <p class="date"> Created at </p> </div>
-        <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, aperiam.</p>
-        <div class="btns">
-            <a href="/like" class="like">Like</a>  
-            <a href="/edit" class="edit">Edit</a>
-            <a href="/delete" class="delete">Delete</a>
+<script>
+    
+</script>
+<div class="container"> 
+     <% if(err){ %> 
+      <h1 style="color: red;"> <%= err %> </h1>    
+     <% } %> 
+    <% blogs.forEach((allblog) =>{ %>
+    <div class="main"> 
+        <div class="box1"> 
+            <h1 class="title"><%= allblog.title %></h1>
+            <p class="date"> <%= allblog.createdAt %> </p> 
         </div>
-                 
-
+            <p class="content"><%= allblog.content %></p>
+        <div class="btns">
+            <a href="/<%= allblog._id %>/like" class="like">Like</a>  
+            <a href="/<%= allblog._id %>/edit" class="edit">Edit</a>
+            <a href="/<%= allblog._id %>/delete" class="delete">Delete</a>
+        </div>
     </div>
+        <% }); %>         
 </div>
 
 <style> 

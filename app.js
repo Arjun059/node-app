@@ -4,10 +4,7 @@ const mongoose = require('mongoose');
 const isAuth = require("./middeware/authcheck");
 
 require("dotenv").config();
-
-
 // ------mongooe connection -----
-
 mongoose.connect(process.env.mongouri,
     {useNewUrlParser: true, useUnifiedTopology:true, useCreateIndex: true},
     ()=> console.log("db connected"));
@@ -29,12 +26,11 @@ app.set("views", path.resolve(__dirname + "/views"));
 app.use(require("./Routes/sessionroutes"));
 // ---------login-register-------
 app.use(require("./Routes/loginroutes"));
+//----------blog routes----------
+app.use(require("./Routes/blogroutes"));
 
 //-------Routes----------------
-app.get('/', (req, res) => { 
-    res.status(200);
-    res.render("index");
-});
+
 app.get("/private", isAuth, (req, res) => {
     res.send("auth cheched")
 })

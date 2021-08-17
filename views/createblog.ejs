@@ -1,19 +1,19 @@
 <%- include( "./partials/header") %>
 
 <div class="container">
-    <div class="main">
-       <h1>Feel Free To Write</h1>
-      <div class="box1">  <textarea name="title">Write here title</textarea>  </div>
-       <div class="box2"> <textarea name="content" id="" rows="10"> Write here content</textarea></div>
+    <form action="/blog/create" method="POST">
+     <div class="main">
+        <h1>Feel Free To Write</h1>
+        <div class="box1">  <textarea name="title">Write here title</textarea>  </div>
+        <div class="box2"> <textarea name="content" id="" rows="10"> Write here content</textarea></div>
         <div class="btns">
-            <a href="/like" class="like">Submit</a>  
+            <button type="submit">Post</button>  
             <a href="/" class="back">Back</a>
         </div>
-                 
+     </div>             
+    </form>
 
-    </div>
 </div>
-
 <style> 
     body{
         background-color: #F8fbf8;
@@ -35,7 +35,7 @@
         padding-bottom: .5rem ;
     }
     
-    a {
+    a, button{
         text-decoration: none;
         display: block !important;
         max-width: 4rem;
@@ -48,7 +48,7 @@
         min-width: 4rem;
     }
     
-    .like , .back {
+    button, .back {
         background: rgb(65,105,225);
         margin-top: 1rem;
         min-width: 6rem;
