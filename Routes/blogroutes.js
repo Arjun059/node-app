@@ -7,14 +7,20 @@ const isAuth = require("../middeware/authcheck");
 
 
 router.get("/", async (req, res) => {
+    console.log("req.hiit")
     const error = req.session.error || "";
     delete req.session.error;
     let user;
-    if(req.session.user == undefined){user = "" };
+    if(req.session.user == undefined){
+        user = "" 
+    }else{
+        user = req.session.user;
+    }
     const blogs = await Blog.find();
     res.render("index", {blogs: blogs, err: error, username: user});
 })
 
+router.use(isAuth);
 
 router.get("/blog/create", (req, res) => {
    let erro = req.session.error || "" ;
@@ -24,10 +30,7 @@ router.get("/blog/create", (req, res) => {
 
 router.post("/blog/create", async (req, res) => {
     const {title, content} = req.body;
-    if(title == "" || content == ""){
-        req.seesion.error = "Title and Content Required";
-        return res.redirect("/blog/create");
-    }
+
     var options = {  year: 'numeric', month: 'long', day: 'numeric' };
     var today  = new Date();
     var date = today.toLocaleDateString("en-US", options);

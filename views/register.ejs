@@ -7,7 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Register form </h1>
+    <% if(err){ %> <h3 style="color: red;"><%= err %> </h3> <% } %>
+    <h1>Register for Free </h1>
+    <form action="/register" method="POST">
+     <input type="text" name="username" placeholder="Name">
+     <input type="text" name="email" placeholder="email">
+     <input type="text" name="password" placeholder="password">
+     <input type="text"  name="cnfpassword" placeholder="confirmPassword">
+     <button type="submit">Register</button>
+    </form>
     
 </body>
 </html>

@@ -1,12 +1,15 @@
 <%- include( "./partials/header") %>
 <%- include("./partials/navbar") %> 
-<script>
-    
-</script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+</style>
+
 <div class="container"> 
      <% if(err){ %> 
-      <h1 style="color: red;"> <%= err %> </h1>    
+     <a href="/login" class="loga"> <h1 style="color: red;"> <%= err %> </h1> </a>   
      <% } %> 
+     <% blogs.reverse(); %> 
     <% blogs.forEach((allblog) =>{ %>
     <div class="main"> 
         <div class="box1"> 
@@ -28,7 +31,9 @@
 </div>
 
 <style> 
-  
+   .loga{
+       max-width: initial;
+   }
     body{
         background-color: #F8fbf8;
     }
@@ -57,11 +62,12 @@
     }
     .content{
         font-size: larger;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: 'Indie Flower', cursive;
+        
     }
     .title{
-        font-family: 'Times New Roman', Times, serif
-        ; margin-bottom: .5rem;
+        font-family: 'Indie Flower', cursive ; 
+         margin-bottom: .5rem;
     
     }
     a {

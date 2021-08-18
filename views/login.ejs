@@ -7,7 +7,20 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/register"><sup>don't have account create one</sup> </a>
     <h1>login form</h1>
-    
+    <% if(err){ %> <h3 style="color: red;"><%= err %> </h3> <% } %> 
+    <% if(msg){ %> <h3 style="color: greenyellow;"><%= msg %> </h3> <% } %>
+    <form action="/login" method="POST">
+    <input type="text" name="email" placeholder="email">
+    <input type="text" name="password" placeholder="password">
+    <button type="submit">Login</button>
+    </form>
+    <style>
+        a{
+            float:right;
+        }
+    </style>
+   
 </body>
 </html>
