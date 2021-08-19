@@ -93,6 +93,10 @@ router.get("/:blog_id/like", async (req, res) => {
     })
     .count();
     if(isliked == true){
+
+        await Blog.findOneAndUpdate({_id: _id}, {
+            $pull: {like:userId}
+        })
         return res.redirect("/");
     }
     
