@@ -10,13 +10,10 @@ router.get("/", async (req, res) => {
     console.log("req.hiit")
     const error = req.session.error || "";
     delete req.session.error;
-    let user;
-    if(req.session.user == undefined){
-        user = "" 
-    }else{
-        user = req.session.user;
-    }
+    let user = req.session.user || null ;
+   
     const blogs = await Blog.find();
+
     res.render("index", {blogs: blogs, err: error, username: user});
 })
 
@@ -87,7 +84,24 @@ router.post("/:blog_id/comment", async (req, res) => {
 })
 
 router.get("/:blog_id/like", async (req, res) => {
+    let _id = req.params.blog_id;
+    let userId = req.session.userId;
 
-    res.redirect("/");
+    
+    let isliked = await Blog.find({ _id: _id,
+     like: { $in: [userId] },
+    })
+    .count();
+    if(isliked == true){
+        return res.redirect("/");
+    }
+    
+    const islike = await Blog.findOneAndUpdate({_id: _id}, {
+        $push: {like:userId}
+    })
+    if(islike !== null){
+        res.redirect("/")
+    
+    }
 })
 module.exports = router ;

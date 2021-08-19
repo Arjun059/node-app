@@ -31,6 +31,7 @@ router.post("/login", async (req, res) => {
     }else{
         req.session.isAuth = true;
         req.session.user =  user.username;
+        req.session.userId = user._id;
         return res.redirect("/");
     }
 });

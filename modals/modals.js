@@ -15,8 +15,7 @@ const blogSchema = new Schema({
     title: {type: String, required: [true, "Title is Required"]},
     content: {type: String, required: [true, "Content is Required"]},
     comment: [{type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
-    like: [{type:Object}]
-
+    like: [{type: mongoose.Schema.Types.ObjectId, ref: "User"},]
 });
 const Blog = mongoose.model("Blog", blogSchema);
 
