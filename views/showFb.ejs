@@ -6,33 +6,50 @@
 </style>
 
 <div class="container"> 
-     <% if(err){ %> 
-     <a href="/login" class="loga"> <h1 style="color: red;"> <%= err %> </h1> </a>   
-     <% } %> 
-     <% blogs.reverse(); %> 
-    <% blogs.forEach((allblog) =>{ %>
     <div class="main"> 
         <div class="box1"> 
             
-            <h1 class="title"><%= allblog.title %></h1>
-            <p class="date"> <sup><%= allblog.createdAt %></sup></p> 
+            <h1 class="title"><%= blog.title %></h1>
+            <p class="date"> <sup><%= blog.createdAt %></sup></p> 
         </div>
              
-            <p class="content"><%= allblog.content.slice(0, 280); %> <a href="/<%= allblog._id %>/showFb" class="readmore">Read More...</a> </p>
+            <p class="content"><%= blog.content %>  </p>
         <div class="btns">
-            <a href="/<%= allblog._id %>/like" class="like"><%= allblog.like.length %> Like</a>  
-            <a href="/<%= allblog._id %>/edit" class="edit">Edit</a>
-            <a href="/<%= allblog._id %>/delete" class="delete">Delete</a>
-            <a href="/<%= allblog._id %>/showFb" class="like">Comments</a>
+            <a href="/<%= blog._id %>/like" class="like"><%= blog.like.length %> Like</a>  
+            <a href="/<%= blog._id %>/edit" class="edit">Edit</a>
+            <a href="/<%= blog._id %>/delete" class="delete">Delete</a>
         </div>
+        <div class="cmdiv">
+         <h2>Comments</h2>
+        <% blog.comment.forEach((cmt)=> { %> 
+            <div > <p class="cm"><%= cmt.content %> <sup class="sup"> <span>author :</span> <%= cmt.author %> </sup></p></div>
+        <% }) %> 
+       </div>
     </div>
-        <% }); %>     
-     
-
+    <form action="/<%= blog._id %>/comment" method="POST">
+    <input type="text" name="comment"  placeholder="type.. comment">
+    <input type="submit" placeholder="Post">
+    </form>
+        
      </div>    
 </div>
 
+
 <style> 
+.sup{
+    float: right;
+    margin-top: -4px;
+}
+.cm{
+     padding-top: 2px;
+     padding-bottom: 2px;
+    color: rgb(65,105,225);
+    border: seashell;
+    border-style: dashed;
+    border-radius: 3px;
+    border-color: rgb(65,105,225);
+    font-size: x-large;
+}
    .loga{
        max-width: initial;
    }
@@ -65,7 +82,6 @@
         padding-right: 1rem;
         padding-bottom: 2rem ;
         margin-bottom: 1rem;
-        border-bottom: 5px solid rgb(65,105,225); ;
         
     }
     .content{

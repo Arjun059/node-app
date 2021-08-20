@@ -64,23 +64,28 @@ router.get("/:blog_id/delete", async (req, res) => {
      res.redirect("/");
 });
 
-router.get("/blog/comment", (req, res) => {
-    res.render("comment");
+router.get("/:blog_id/showFb",async (req, res) => {
+    let _id = req.params.blog_id;
+    let user = req.session.user || null ;
+    let blog = await Blog.findById({_id: _id}).populate("comment");
+    
+    res.render("showFb", {blog: blog, username: user});
 })
 
 router.post("/:blog_id/comment", async (req, res) => {
     const _id = req.params.blog_id;
     const {comment} = req.body;
-    
-    const blog = await Blog.findOne({_id: _id});
+
     const cmt =  new Comment({
        author: req.session.user,
        content: comment,
-       blog: blog._id,      
+       blog: _id,      
     });
-
-    blog.comment.push(cmt._id);
-    res.redirect("/");
+    await cmt.save();
+    let cmtblog = await Blog.findOneAndUpdate({_id: _id}, {
+        $push: {comment: cmt._id}
+    });
+    res.redirect(`/${_id}/showFb`);
 })
 
 router.get("/:blog_id/like", async (req, res) => {
@@ -108,4 +113,5 @@ router.get("/:blog_id/like", async (req, res) => {
     
     }
 })
+
 module.exports = router ;
