@@ -2,7 +2,7 @@ const express = require("express");
 const path = require('path');
 const mongoose = require('mongoose');
 const isAuth = require("./middeware/authcheck");
-
+const favicon = require('serve-favicon');
 require("dotenv").config();
 // ------mongooe connection -----
 mongoose.connect(process.env.mongouri,
@@ -23,6 +23,8 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname + "/views"));
 
 //=============Routes=====================
+//----------serve-favicon---------------
+app.use(favicon(path.join(__dirname, "public", "newlogo.ico")))
 // --------session_logic_routes --------
 app.use(require("./Routes/sessionroutes"));
 // --------login_register_logic_routes-------
