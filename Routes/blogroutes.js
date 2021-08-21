@@ -46,7 +46,15 @@ router.post("/blog/create", async (req, res) => {
 router.get("/:blog_id/edit", async (req, res) => {
     const _id = req.params.blog_id;
     const blog = await Blog.findOne({_id: _id});
-    res.render("editblog", {blog: blog});
+
+    if(req.session.user == blog.author) {
+        res.render("editblog", {blog: blog});
+
+    }else{
+        req.session.error = "you only edit your blog"
+        res.redirect("/")
+    }
+   
 });
 
 router.post("/:blog_id/edit", async (req, res) => {
@@ -60,8 +68,17 @@ router.post("/:blog_id/edit", async (req, res) => {
 
 router.get("/:blog_id/delete", async (req, res) => {
      const _id = req.params.blog_id;
-     const blog = await Blog.findByIdAndDelete({_id: _id});
-     res.redirect("/");
+     
+     const blog = await Blog.findOne({_id: _id});
+
+     if(req.session.user == blog.author) {
+        const blog = await Blog.findByIdAndDelete({_id: _id});
+        res.redirect("/");
+     }else{
+         req.session.error = "you only delete your blog"
+         res.redirect("/")
+     }
+    
 });
 
 router.get("/:blog_id/showFb",async (req, res) => {
