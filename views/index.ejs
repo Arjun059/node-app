@@ -12,13 +12,12 @@
      <% blogs.reverse(); %> 
     <% blogs.forEach((allblog) =>{ %>
     <div class="main"> 
+        <p class="newdate"> <sup class="date"><%= allblog.createdAt %></sup></p>
         <div class="box1"> 
-            
-            <h1 class="title"><%= allblog.title %></h1>
-            <p class="date"> <sup><%= allblog.createdAt %></sup></p> 
+           <h1 class="title"><%= allblog.title %></h1>
         </div>
              
-            <p class="content"><%= allblog.content.slice(0, 280); %> <a href="/<%= allblog._id %>/showFb" class="readmore">Read More...</a> </p>
+            <p class="content"><%= allblog.content.slice(0, 280); %> <a href="/<%= allblog._id %>/showFb" class="readmore"><%= allblog.content.length <= 280 ? "" : "Read More..." %> </a> </p>
         <div class="btns">
             <a href="/<%= allblog._id %>/like" class="like"><%= allblog.like.length %> Like</a>  
             <a href="/<%= allblog._id %>/edit" class="edit">Edit</a>
@@ -33,6 +32,9 @@
 </div>
 
 <style> 
+    .date{
+        float: right;
+    }
    .loga{
        max-width: initial;
    }
@@ -52,12 +54,10 @@
     }
     .box1 {
         display: flex;
-    }
-    .date{
-        margin-left: auto;
-        margin-right: .2rem;
+        width: 98vw;
         
     }
+
     .main{
         margin-bottom: .5rem;   
         margin-left: -8px;
