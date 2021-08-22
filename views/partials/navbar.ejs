@@ -1,4 +1,5 @@
 <div id="navbar" class="sticky">
+     <div><img src="/weblog.png"  id="rotate" alt="image"></div>
     <a href="#home" class="abox1"><%= username != null && username != undefined ? username : "UserName" %></a>
     
     <a href="/blog/create" class="abox2">Create&nbsp;Blog</a>
@@ -6,7 +7,9 @@
 
   <style>
  .abox1 {
-     margin-left: 1.5rem;
+     margin-left: -12rem;
+     z-index: 10;
+     font-size: 22px !important;
  }     
 .abox2{
     margin-left: auto;
@@ -45,5 +48,14 @@
   position: fixed;
   top: 0;
   width: 100%;
+}
+#rotate{
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+}
+@keyframes rotate {
+  0%{rotate: 0deg;}
+  100%{rotate: 360deg;}
 }
   </style>
