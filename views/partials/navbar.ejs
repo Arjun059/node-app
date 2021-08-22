@@ -9,7 +9,7 @@
  .abox1 {
      margin-left: -12rem;
      z-index: 10;
-     font-size: 22px !important;
+     font-size: -10rem !important;
  }     
 .abox2{
     margin-left: auto;
@@ -50,11 +50,19 @@
   width: 100%;
 }
 #rotate{
-  animation-name: rotate;
-  animation-iteration-count: infinite;
-  animation-duration: 4s;
+ -webkit-animation-name:"rotate";
+ -webkit-animation-duration: 4s;
+ -webkit-animation-iteration-count: infinite ;
+ -moz-animation-name:rotate;
+ -moz-animation-duration: 4s;
+ -moz-animation-iteration-count: infinite;
+
 }
-@keyframes rotate {
+@-webkit-keyframes rotate {
+  0%{rotate: 0deg;}
+  100%{rotate: 360deg;}
+}
+@-moz-keyframes rotate {
   0%{rotate: 0deg;}
   100%{rotate: 360deg;}
 }
