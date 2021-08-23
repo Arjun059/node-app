@@ -1,0 +1,39 @@
+<%- include("./partials/header.ejs") %> 
+<%- include("./partials/navbar.ejs") %> 
+ 
+<div id="contaniner">
+    <div class="userpro">
+        <h2><%= useremail == null ? "Email": useremail  %> </h2>
+    </div>
+
+
+    <div class="btn-div"> 
+        <a href="/user/blog" class="btn-a">Your Blogs</a>
+    </div>
+    
+</div>
+
+<style>
+ #contaniner{
+     margin-top: 70px;
+     padding: 2rem;
+ }
+ .btn-div{
+     background-color: lightseagreen;
+     max-width: 10rem;
+     text-align: center;
+     border-radius: .2rem;
+ }
+ .btn-a{
+     text-decoration: none;
+     color: white;
+     letter-spacing: .1rem;
+     display: block;
+     padding: 10px;
+     font-size: large;
+     font-weight: bold;
+ }
+ 
+ 
+</style>
+<%- include("./partials/header.ejs") %>

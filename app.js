@@ -29,11 +29,12 @@ app.use(favicon(path.join(__dirname, "public", "newlogo.ico")))
 app.use(require("./Routes/sessionroutes"));
 // --------login_register_logic_routes-------
 app.use(require("./Routes/loginroutes"));
-// ---------blog_logic_routes----------
+// ---------blog_logic_routes----------------
 app.use(require("./Routes/blogroutes"));
+//----------userprofile_logic_routes---------
+app.use(require("./Routes/userpfroutes"));
 
 
 // ---server running-----------
-
 let PORT = process.env.PORT || 8200;
 app.listen(PORT, ()=>console.log(`http://localhost:${PORT}/`));

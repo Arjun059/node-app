@@ -12,7 +12,10 @@
      <% blogs.reverse(); %> 
     <% blogs.forEach((allblog) =>{ %>
     <div class="main"> 
+        <div class="h"> 
+        <p class="author"> Author : &nbsp; <%= allblog.author %>  </p>
         <p class="newdate"> <sup class="date"><%= allblog.createdAt %></sup></p>
+        </div>
         <div class="box1"> 
            <h1 class="title"><%= allblog.title %></h1>
         </div>
@@ -32,6 +35,8 @@
 </div>
 
 <style> 
+    
+    
     .date{
         float: right;
     }
@@ -103,6 +108,11 @@
     }
     .btns {
         display: flex;
+    }
+    .h{
+        display: flex;
+        margin-bottom: -24px;
+        justify-content: space-between;
     }
    </style>
 <%- include( "./partials/footer") %> 
