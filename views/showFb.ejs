@@ -22,7 +22,7 @@
         <div class="cmdiv">
          <h2>Comments</h2>
         <% blog.comment.forEach((cmt)=> { %> 
-            <div > <p class="cm"><%= cmt.content %> <sup class="sup"> <span>author :</span> <%= cmt.author %> </sup></p></div>
+            <div id="newid"> <p class="cm"><%= cmt.content %> <sup class="sup"> <span>author :</span> <%= cmt.author %> </sup></p></div>
         <% }) %> 
        </div>
     </div>
@@ -123,6 +123,9 @@ span{
     }
     .btns {
         display: flex;
+    }
+    #newid p {
+        font-family: 'Dosis';
     }
    </style>
 <%- include( "./partials/footer") %> 

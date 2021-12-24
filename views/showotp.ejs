@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% if(msg){ %> <h3 style="color: gray;"><%= msg %> </h3> <% } %>
+    <% if(!email){ %> <h3 style="color: rgb(228, 93, 93);"> There is Something Wronge Please Refresh Page </h3> <% } %>
+    <h1> Just One Step to Register </h1>
+    <form action="/otp" method="POST">
+      <input type="text" name="email" value="<%= email %>">
+     <input type="text" name="uotp" placeholder="OTP">
+     <button type="submit">Submit</button>
+    </form>
+    
+    <script> 
+    if (email == undefined) { location.reload() }
+    console.log(email);
+    </script>
+</body>
+</html>
