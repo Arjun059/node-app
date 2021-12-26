@@ -4,11 +4,12 @@ const bcrypt = require('bcrypt');
 const Modals = require("../modals/modals");
 const User = Modals.User ;
 const nodemailer = require('nodemailer');
-const otpcheck = require("../middeware/nodemailer");
+const otpSend = require("../middeware/nodemailer");
 
 // otp genrate 
-var rowOtp = String(new Date().getMilliseconds() + new Date().getMilliseconds()) + new Date().getMinutes();
+var rowOtp = String(new Date().getMilliseconds() + new Date().getMilliseconds() + new Date().getMilliseconds()) + new Date().getMinutes();
 var otp = rowOtp.slice(0,4);
+console.log(otp)
 
 router.get("/login", (req, res) => {
     const error = req.session.error ;
@@ -73,7 +74,7 @@ router.post("/register", async (req, res) => {
         req.session.error = "Password Should be 6 charter long";
         return res.redirect("/register");
     }
-    await otpcheck(email, otp).catch(erro => console.log(erro))
+    await otpSend(email, otp).catch(erro => console.log(erro))
     const hasspass = await bcrypt.hash(password, 10);
     const newuser = new User({
         username: username,

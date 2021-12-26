@@ -1,6 +1,6 @@
 require('dotenv').config({path: '../.env'})
 const nodemailer = require("nodemailer");
-async function otpcheck (userEmail, otp) {
+async function otpSend (userEmail, otp) {
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -21,7 +21,7 @@ const info = await transporter.sendMail({
 console.log(info)
 
 }
-module.exports = otpcheck;
+module.exports = otpSend;
 // otpcheck("colol@gmail.com", "1234").catch(err => console.log(err))
 // module.exports = otpcheck ;
 
