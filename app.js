@@ -8,6 +8,11 @@ require("dotenv").config();
 mongoose.connect(process.env.mongouri,
     {useNewUrlParser: true, useUnifiedTopology:true, useCreateIndex: true},
     ()=> console.log("db connected"));
+
+//------otp genrater---------
+var otp = (String(new Date().getMilliseconds() + new Date().getMilliseconds() + new Date().getMilliseconds()) + new Date().getMinutes()).slice(0,4);
+// var otp = rowOtp.slice(0,4);    
+
 //------express init---------
 const app = express();
 
