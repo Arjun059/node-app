@@ -9,7 +9,6 @@ const otpSend = require("../middeware/nodemailer");
 // otp genrate 
 var rowOtp = String(new Date().getMilliseconds() + new Date().getMilliseconds() + new Date().getMilliseconds()) + new Date().getMinutes();
 var otp = rowOtp.slice(0,4);
-console.log(otp)
 
 router.get("/login", (req, res) => {
     const error = req.session.error ;
@@ -50,9 +49,7 @@ router.post("/login", async (req, res) => {
         return res.redirect("/");
 
        }
-    })
-        
-    
+    })  
 });
 
 router.get("/register", (req, res) => {
@@ -85,7 +82,7 @@ router.post("/register", async (req, res) => {
     req.session.otpmsg = "OTP hash been send to your Email";
     req.session.email = email;
     // res.redirect("/otpshow")
-    res.render("showotp",{email: email, msg: "",otpmsg: ""})
+    res.render("showotp",{email: email, msg: "",otpmsg: "OTP hash been send to your Email" })
     // req.session.msg = "You Have Register Sucsess Fully";
     // res.status(201).redirect("/login")
 });

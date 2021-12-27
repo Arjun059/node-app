@@ -22,6 +22,6 @@ console.log(info)
 
 }
 module.exports = otpSend;
-// otpcheck("colol@gmail.com", "1234").catch(err => console.log(err))
-// module.exports = otpcheck ;
+// otpSend("colol@gmail.com", "1234").catch(err => console.log(err))
+// module.exports = otpSend ;
 
