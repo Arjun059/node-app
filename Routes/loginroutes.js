@@ -6,9 +6,13 @@ const User = Modals.User ;
 const nodemailer = require('nodemailer');
 const otpSend = require("../middeware/nodemailer");
 
-var otpgenrate = Math.random()*10000000000000000;
-var otp = String(otpgenrate).slice(0,4);
+function otpgen() {
+    var otpgenrate = Math.random()*10000000000000000;
+    return String(otpgenrate).slice(0,4);
+};
+let otp = otpgen();    
 
+console.log(otp)
 router.get("/login", (req, res) => {
     const error = req.session.error ;
     delete req.session.error ;
