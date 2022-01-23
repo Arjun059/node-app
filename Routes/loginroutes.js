@@ -3,16 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const Modals = require("../modals/modals");
 const User = Modals.User ;
-const nodemailer = require('nodemailer');
-const otpSend = require("../middeware/nodemailer");
 
-function otpgen() {
-    var otpgenrate = Math.random()*10000000000000000;
-    return String(otpgenrate).slice(0,4);
-};
-let otp = otpgen();    
-
-console.log(otp)
 router.get("/login", (req, res) => {
     const error = req.session.error ;
     delete req.session.error ;
@@ -30,11 +21,6 @@ router.post("/login", async (req, res) => {
     }
     
     const user = await User.findOne({email: email});
-
-    if (user.otpcheck == false) {
-        req.session.error = "Email is not verified";
-        return res.redirect("/login")
-    }
     
     if (user == null || user == undefined) {
         req.session.error = "Crediansals Invalid";
@@ -74,7 +60,6 @@ router.post("/register", async (req, res) => {
         req.session.error = "Password Should be 6 charter long";
         return res.redirect("/register");
     }
-    await otpSend(email, otp).catch(erro => console.log(erro))
     const hasspass = await bcrypt.hash(password, 10);
     const newuser = new User({
         username: username,
@@ -82,36 +67,16 @@ router.post("/register", async (req, res) => {
         password: hasspass
     });
     await newuser.save();
-    req.session.otpmsg = "OTP hash been send to your Email";
-    req.session.email = email;
-    // res.redirect("/otpshow")
-    res.render("showotp",{email: email, msg: "",otpmsg: "OTP hash been send to your Email" })
+    
+    req.session.isAuth = true;
+        req.session.user =  newuser.username;
+        req.session.userId = newuser._id;
+        return res.redirect("/");
+    // res.render("showotp",{email: email, msg: "",otpmsg: "OTP hash been send to your Email" })
     // req.session.msg = "You Have Register Sucsess Fully";
     // res.status(201).redirect("/login")
 });
-router.get("/otpshow", (req, res) => {
-    const otpmsg = req.session.otpmsg ;
-    const email = req.session.email;
-    delete req.session.otpmsg ;
-    delete req.session.email;
-    res.render("showotp", {msg: otpmsg, email: email});
-})
-router.post("/otp", async (req, res) => {
-    const {email, uotp} = req.body;
-    
-    if(otp == uotp && email != undefined) {
-        req.session.msg = "You Have Register Sucsess Fully";
-        const user = await User.findOne({email: email});
-        await User.updateOne({email: email}, { $set: { otpcheck: true}});
-        req.session.isAuth = true;
-        req.session.user =  user.username;
-        req.session.userId = user._id;
-        return res.redirect("/");
-    }else {
-        req.session.errmsg = "Otp not match"
-        res.redirect("/otpshow")
-    }
-});
+
 // logout session 
 router.get("/logout", (req, res) => {
     req.session.destroy(function(err) {
