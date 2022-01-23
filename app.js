@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require('path');
 const mongoose = require('mongoose');
-const isAuth = require("./middeware/authcheck");
 const favicon = require('serve-favicon');
 require("dotenv").config();
 // ------mongooe connection -----
